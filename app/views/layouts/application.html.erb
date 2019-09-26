@@ -23,6 +23,25 @@
       <div class="container">
         <a class="navbar-brand">Warehouses Controll</a>
 
+        <div class="navbar">
+          <ul class="navbar-nav d-inline-flex flex-row">
+
+            <li class="nav-item active">
+              <!-- refactor link -->
+              <%= link_to 'Home', 'home_path', class: "nav-link"%>
+            </li>
+            <li class="nav-item active">
+              <!-- refactor link -->
+              <%= link_to 'Warehouses', 'warehouse_path', class: "nav-link"%>
+            </li>
+            <li class="nav-item active">
+              <!-- refactor link -->
+              <%= link_to 'Stores', 'stores_path', class: "nav-link"%>
+            </li>
+
+          </ul>
+        </div>
+
         <% if user_signed_in? %>
           <div>
             <%= current_user.first_name %>
