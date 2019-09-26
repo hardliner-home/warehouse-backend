@@ -1,1 +1,5 @@
-<div>Home page</div>
+<% if current_user.owner_type == 'store' %>
+  <%= link_to 'Make order', 'make_order_path', method: :delete, class: 'btn btn-primary' %>
+<% else %>
+
+<% end %>
