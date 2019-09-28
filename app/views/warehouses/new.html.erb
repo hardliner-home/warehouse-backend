@@ -1,0 +1,8 @@
+<div>New warehouse</div>
+
+<%= simple_form_for :warehouse, url: warehouses_path, local: true do |f| %>
+  <%= f.input :title %>
+  <%= f.input :number %>
+  <%= f.input :address %>
+  <%= f.button :submit %>
+<% end %>
