@@ -1,0 +1,6 @@
+<div><%= @warehouse.id %></div>
+<div><%= @warehouse.title %></div>
+<div><%= @warehouse.number %></div>
+<div><%= @warehouse.address %></div>
+
+<%= link_to 'Edit', edit_warehouse_path(@warehouse.id), method: :get, class: 'btn btn-primary' %>

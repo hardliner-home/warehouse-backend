@@ -1,3 +1,4 @@
 class Product < ApplicationRecord
-  has_and_belongs_to_many :warehouses
+  has_many :products_warehouses, dependent: :destroy
+  has_many :warehouses, through: :products_warehouses, dependent: :destroy
 end

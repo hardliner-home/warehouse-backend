@@ -1,0 +1,30 @@
+<div>Products list</div>
+
+<% if @warehouseProducts.empty? %>
+  <p>На складе отсутствуют товары</p>
+<% else %>
+
+  <table class="table col-6">
+    <thead>
+      <tr>
+        <th scope="col-4">#</th>
+        <th scope="col">Product</th>
+        <th scope="col">Count</th>
+      </tr>
+    </thead>
+    <tbody>
+
+  <% @warehouseProducts.each do |whpd| %>
+
+      <tr>
+        <th scope="row"><%= whpd.id %></th>
+        <td><%= whpd.title %></td>
+        <td><%= whpd.count %></td>
+      </tr>
+
+  <% end %>
+    </tbody>
+  </table>
+
+<% end %>
+

@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
   devise_for :users
 
-  resource :warehouses
-  resource :stores
+  resources :warehouses do
+    resources :products
+  end
+
+  resources :stores
 
   get 'home' => 'home#home'
 

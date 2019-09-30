@@ -30,7 +30,7 @@
             <li class="nav-item <%= 'active' if params[:controller] == 'home' %>">
               <%= link_to 'Home', home_path, method: :get, class: 'nav-link' %>
             </li>
-            <li class="nav-item <%= 'active' if params[:controller] == 'warehouses' %>">
+            <li class="nav-item <%= 'active' if params[:controller] == 'warehouses' || params[:controller] == 'products'%>">
               <%= link_to 'Warehouses', warehouses_path, method: :get, class: 'nav-link' %>
             </li>
             <li class="nav-item <%= 'active' if params[:controller] == 'stores' %>">
