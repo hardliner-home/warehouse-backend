@@ -15,6 +15,10 @@ class WarehousesController < ApplicationController
     @warehouse = Warehouse.new
   end
 
+  def edit
+    @warehouse = Warehouse.find(params[:id])
+  end
+
   def create
     @warehouse = Warehouse.new(warehouse_params)
 
@@ -27,7 +31,11 @@ class WarehousesController < ApplicationController
   end
 
   def update
-
+    if @warehouse.update(warehouse_params)
+      redirect_to @warehouse
+    else
+      render 'edit'
+    end
   end
 
   def destroy

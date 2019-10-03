@@ -20,7 +20,7 @@
         <td>
           <%= link_to 'Info', warehouse_path(wh.id), method: :get, class: 'btn btn-secondary' %>
           <%= link_to 'Products', warehouse_products_path(wh.id), method: :get, class: 'btn btn-primary' %>
-          <%= link_to 'Edit', warehouse_path(wh.id), method: :put, class: 'btn btn-warning' %>
+          <%= link_to 'Edit', edit_warehouse_path(wh.id), method: :get, class: 'btn btn-warning' %>
           <%= link_to 'Delete', warehouse_path(wh.id), method: :delete, class: 'btn btn-danger' %>
         </td>
       </tr>
