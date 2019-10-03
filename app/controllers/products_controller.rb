@@ -2,13 +2,13 @@ class ProductsController < ApplicationController
 
   def index
     if params[:warehouse_id].present?
-      if Warehouse.find(params[:warehouse_id]).valid?
-        @warehouseProducts = Warehouse.find(params[:warehouse_id]).products
-      end
+      @warehouseProducts = Warehouse.find(params[:warehouse_id]).products
+    else
+      @warehouseProducts = nil
     end
   end
 
-  # def show
-  #   @warehouseProducts = Product.find(params[:id])
-  # end
+  def show
+    @warehouseProducts = Product.find(params[:id])
+  end
 end

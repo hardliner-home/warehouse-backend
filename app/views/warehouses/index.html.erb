@@ -8,7 +8,7 @@
     <thead>
     <tr>
       <th scope="col-4">Title</th>
-      <th scope="col">Actions</th>
+      <th scope="col-4">Actions</th>
     </tr>
     </thead>
     <tbody>
@@ -18,8 +18,10 @@
       <tr>
         <th scope="row"><%= wh.title %></th>
         <td>
-          <%= link_to 'Info', warehouse_path(wh.id), method: :get, class: 'btn btn-secondary' %>                <!-- wh.id-->
+          <%= link_to 'Info', warehouse_path(wh.id), method: :get, class: 'btn btn-secondary' %>
           <%= link_to 'Products', warehouse_products_path(wh.id), method: :get, class: 'btn btn-primary' %>
+          <%= link_to 'Edit', warehouse_path(wh.id), method: :put, class: 'btn btn-warning' %>
+          <%= link_to 'Delete', warehouse_path(wh.id), method: :delete, class: 'btn btn-danger' %>
         </td>
       </tr>
 
@@ -27,4 +29,7 @@
 
     </tbody>
   </table>
+
 <% end %>
+
+<%= link_to 'Create Warehouse', new_warehouse_path, method: :get, class: 'btn btn-primary' %>

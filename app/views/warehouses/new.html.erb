@@ -1,8 +1,25 @@
 <div>New warehouse</div>
 
-<%= simple_form_for :warehouse, url: warehouses_path, local: true do |f| %>
-  <%= f.input :title %>
-  <%= f.input :number %>
-  <%= f.input :address %>
-  <%= f.button :submit %>
+<%= simple_form_for :warehouse, url: warehouses_path do |f| %>
+
+  <% if @warehouse.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@warehouse.errors.count, "error") %> prohibited
+        this article from being saved:
+      </h2>
+      <ul>
+        <% @warehouse.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+  <%= f.input :title, class: 'col-5' %>
+  <%= f.input :number, class: 'col-5' %>
+  <%= f.input :address, class: 'col-5' %>
+  <%= f.button :submit, url: warehouses_path, method: :post, class: 'btn btn-primary'%>
+  <%= link_to 'Cancel', warehouses_path, method: :get, class: 'btn btn-secondary' %>
 <% end %>
