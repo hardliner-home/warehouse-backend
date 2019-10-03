@@ -4,5 +4,12 @@ class Warehouse < ApplicationRecord
   has_many :products_warehouses, dependent: :destroy
   has_many :products, through: :products_warehouses, dependent: :destroy
 
-  # validates :title, :address, presence: true, uniqueness: true #, on: create
+  validates :title,
+            :address,
+            presence: true
+
+  validates :title,
+            :address,
+            uniqueness: true
+
 end

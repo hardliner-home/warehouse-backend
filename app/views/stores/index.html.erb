@@ -12,7 +12,7 @@
     </thead>
     <tbody>
 
-    <% @stores.each do |st| %>
+    <% paginate @stores.each do |st| %>
 
       <tr>
         <th scope="row"><%= st.title %></th>

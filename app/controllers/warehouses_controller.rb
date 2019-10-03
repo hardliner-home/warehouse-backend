@@ -4,7 +4,8 @@ class WarehousesController < ApplicationController
   @title = 'Warehouses'
 
   def index
-    @warehouses = Warehouse.all
+    # @warehouses = Warehouse.all
+    @warehouses = current_user.warehouses.all
   end
 
   def show
@@ -21,6 +22,7 @@ class WarehousesController < ApplicationController
 
   def create
     @warehouse = Warehouse.new(warehouse_params)
+    @warehouse.user = current_user
 
     if @warehouse.save
       redirect_to warehouses_path, method: :get
@@ -46,7 +48,9 @@ class WarehousesController < ApplicationController
   end
 
   private
+
     def warehouse_params
       params.require(:warehouse).permit(:title, :number, :address)
     end
+
 end

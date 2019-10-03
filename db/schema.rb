@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_30_203119) do
+ActiveRecord::Schema.define(version: 2019_10_03_162059) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(version: 2019_09_30_203119) do
     t.bigint "product_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "count"
     t.index ["product_id"], name: "index_products_warehouses_on_product_id"
     t.index ["warehouse_id"], name: "index_products_warehouses_on_warehouse_id"
   end
@@ -50,8 +51,8 @@ ActiveRecord::Schema.define(version: 2019_09_30_203119) do
   end
 
   create_table "warehouses", force: :cascade do |t|
-    t.string "title"
-    t.string "address"
+    t.string "title", null: false
+    t.string "address", null: false
     t.integer "number"
     t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false

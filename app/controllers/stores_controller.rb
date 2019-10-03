@@ -1,17 +1,21 @@
 class StoresController < ApplicationController
+
   before_action :authenticate_user!
 
   def index
-    @title='Stores'
+    @title = 'Stores'
     @stores = Store.all
   end
 
   def create
-    @product = Pruduct.new(product_params)
+    @store = Store.new(store_params)
+    @store.user = current_user
   end
 
   private
-  def product_params
+
+  def store_params
     params.require(:product).permit(:title, :address, :number)
   end
+
 end

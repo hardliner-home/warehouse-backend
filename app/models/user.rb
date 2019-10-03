@@ -7,4 +7,14 @@ class User < ApplicationRecord
   devise :database_authenticatable,
          :registerable,
          :validatable
+
+
+  def has_warehouses?
+    warehouses.any?
+  end
+
+  def has_stores?
+    stores.any?
+  end
+
 end
