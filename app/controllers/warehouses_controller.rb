@@ -1,7 +1,7 @@
+@title = 'Warehouses'
+
 class WarehousesController < ApplicationController
   before_action :authenticate_user!
-
-  @title = 'Warehouses'
 
   def index
     # @warehouses = Warehouse.all

@@ -4,10 +4,10 @@
 </div>
 
 <div class="d-flex flex-row">
-  <p class="mr-3 my-auto"><%= @warehouse.id %></p>
-  <p class="mr-3 my-auto"><%= @warehouse.title %></p>
-  <p class="mr-3 my-auto"><%= @warehouse.number %></p>
-  <p class="mr-3 my-auto"><%= @warehouse.address %></p>
+  <p class="mr-4 my-auto"><%= @warehouse.id %></p>
+  <p class="mr-4 my-auto"><%= @warehouse.title %></p>
+  <p class="mr-4 my-auto"><%= @warehouse.number %></p>
+  <p class="mr-4 my-auto"><%= @warehouse.address %></p>
   <%= link_to 'Edit', edit_warehouse_path(@warehouse.id), method: :get, class: 'btn btn-warning mr-1' %>
   <%= link_to 'Delete', warehouse_path(@warehouse.id), method: :delete, class: 'btn btn-danger' %>
 </div>

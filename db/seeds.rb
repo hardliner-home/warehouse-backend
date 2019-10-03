@@ -6,23 +6,23 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-3.times do
-  Warehouse.create(
-      title: Faker::Commerce.product_name,
-  )
-
-end
-
-
-100.times do
-  product = Product.create(
-      title: Faker::Commerce.product_name,
-      count: Faker::Number.within(range: 1..100)
-  )
-
-  product.warehouses << Warehouse.order_by_rand.first
-  # Product.last<<Warehouse.all
-end
+# 3.times do
+#   Warehouse.create(
+#       title: Faker::Commerce.product_name,
+#   )
+#
+# end
+#
+#
+# 100.times do
+#   product = Product.create(
+#       title: Faker::Commerce.product_name,
+#       count: Faker::Number.within(range: 1..100)
+#   )
+#
+#   product.warehouses << Warehouse.order_by_rand.first
+#   # Product.last<<Warehouse.all
+# end
 
 # 5.times do
 #   Warehouse.create(
@@ -32,12 +32,12 @@ end
 #   )
 # end
 
-# 800.times do
-#   Store.create(
-#     user_id: Faker::Number.within(range: 1..3),
-#     title: Faker::Restaurant.name
-#   )
-# end
+800.times do
+  Store.create(
+    user_id: Faker::Number.within(range: 1..3),
+    title: Faker::Restaurant.name
+  )
+end
 
 #
 # 100.times do
