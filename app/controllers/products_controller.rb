@@ -2,7 +2,7 @@ class ProductsController < ApplicationController
 
   def index
     if params[:warehouse_id].present?
-      @warehouseProducts = Warehouse.find(params[:warehouse_id]).products
+      @warehouseProducts = Warehouse.find(params[:warehouse_id]).products(params[:page])
     else
       @warehouseProducts = nil
     end
