@@ -1,10 +1,9 @@
 class StoresController < ApplicationController
-
   before_action :authenticate_user!
 
   def index
     @title = 'Stores'
-    @stores = Store.all
+    @stores = Store.page(params[:page])
   end
 
   def create

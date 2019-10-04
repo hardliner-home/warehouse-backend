@@ -9,6 +9,7 @@ gem 'simple_form'
 gem 'faker'
 gem 'randumb'
 gem 'kaminari'
+gem 'bootstrap4-kaminari-views'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.0.0'

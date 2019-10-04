@@ -13,8 +13,8 @@
 </div>
 <br>
 <div>Products list</div>
-
-<% if @warehouse.products.empty? %>
+<br>
+<% if @warehouseProducts.empty? %>
   <p>На складе отсутствуют товары</p>
 <% else %>
 
@@ -28,7 +28,7 @@
     </thead>
     <tbody>
 
-    <% @warehouse.products.each do |whpd| %>
+    <% @warehouseProducts.each do |whpd| %>
 
       <tr>
         <th scope="row"><%= whpd.id %></th>
@@ -39,5 +39,7 @@
     <% end %>
     </tbody>
   </table>
+  <br>
+  <%= paginate @warehouseProducts, theme: 'twitter-bootstrap-4'%>
 
 <% end %>
