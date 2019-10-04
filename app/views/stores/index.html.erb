@@ -1,5 +1,7 @@
 <div>Stores list</div>
 
+<br>
+
 <% if @stores.empty? %>
   <p>Список магазинов пуст</p>
 <% else %>
@@ -22,4 +24,8 @@
 
     </tbody>
   </table>
+
+  <br>
+
+  <%= paginate @stores, theme: 'twitter-bootstrap-4'%>
 <% end %>

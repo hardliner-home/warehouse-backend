@@ -12,4 +12,5 @@ class Warehouse < ApplicationRecord
             :address,
             uniqueness: true
 
+  paginates_per 15
 end

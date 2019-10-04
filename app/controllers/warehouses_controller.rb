@@ -10,6 +10,9 @@ class WarehousesController < ApplicationController
 
   def show
     @warehouse = Warehouse.find(params[:id])
+    @warehouseProducts = @warehouse.products
+                             .order(:id)
+                             .page(params[:page])
   end
 
   def new
