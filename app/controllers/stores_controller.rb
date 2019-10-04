@@ -4,7 +4,7 @@ class StoresController < ApplicationController
 
   def index
     @title = 'Stores'
-    @stores = Store.page(params[:page])
+    @stores = Store.all
   end
 
   def create
