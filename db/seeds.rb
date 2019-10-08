@@ -15,6 +15,10 @@
 #   )
 # end
 
+# 1000.times do
+#
+# end
+
 # 20.times do
 #   Warehouse.create(
 #       title: Faker::Commerce.product_name,
@@ -34,9 +38,9 @@
 #   product.warehouses << Warehouse.order('RANDOM()').first
 # end
 
-800.times do
-  Store.create(
-    user_id: Faker::Number.within(range: 1..10),
-    title: Faker::Restaurant.name
-)
-end
+# 800.times do
+#   Store.create(
+#     user_id: Faker::Number.within(range: 1..10),
+#     title: Faker::Restaurant.name
+# )
+# end

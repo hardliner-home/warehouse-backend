@@ -37,7 +37,7 @@ ActiveRecord::Schema.define(version: 2019_10_04_153312) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "title", null: false
-    t.index ["user_id"], name: "index_stores_on_user_id"
+    t.index ["user_id"], name: "stores_user_id_idx"
   end
 
   create_table "users", force: :cascade do |t|

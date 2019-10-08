@@ -5,7 +5,11 @@ Rails.application.routes.draw do
     resources :products
   end
 
-  resources :stores
+  resources :stores do
+    resources :products
+  end
+
+  resources :orders
 
   get 'home' => 'home#home'
 

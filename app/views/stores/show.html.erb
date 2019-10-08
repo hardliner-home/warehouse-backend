@@ -1,2 +1,37 @@
-<div>Stores list</div>
-<%= @stores %>
+<div>
+  Store
+  <%= @store.title %>
+  <%= link_to 'Make order', new_order_path, method: :get, class: 'btn btn-primary' %>
+</div>
+<br>
+<div>Products list</div>
+<br>
+<% if @storeProducts.empty? %>
+  <p>В магазине отсутствуют товары</p>
+<% else %>
+
+  <table class="table col-6">
+    <thead>
+    <tr>
+      <th scope="col-4">#</th>
+      <th scope="col">Product</th>
+      <th scope="col">Count</th>
+    </tr>
+    </thead>
+    <tbody>
+
+    <% @storeProducts.each do |whpd| %>
+
+      <tr>
+        <th scope="row"><%= whpd.id %></th>
+        <td><%= whpd.title %></td>
+        <td><%= whpd.count %></td>
+      </tr>
+
+    <% end %>
+    </tbody>
+  </table>
+  <br>
+  <%= paginate @storeProducts, theme: 'twitter-bootstrap-4'%>
+
+<% end %>

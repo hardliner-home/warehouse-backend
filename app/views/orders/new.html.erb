@@ -1,0 +1,29 @@
+<div>Create new order</div>
+
+<% if @warehouses.empty? %>
+  <p>No warehouses at list</p>
+<% else %>
+  <%= simple_form_for @order do |f| %>
+
+    <% if @order.errors.any? %>
+      <div id="error_explanation">
+        <h2>
+          <%= pluralize(@order.errors.count, "error") %> prohibited
+          this part from being saved:
+        </h2>
+        <ul>
+          <% @order.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+
+    <%= f.input :count, class: 'col-5' %>
+    <%= f.input :warehouse, collection: ["123"] %>
+    <%= f.input :product, collection: ["123"] %>
+    <%= f.button :submit, 'Make order', url: orders_path, method: :post, class: 'btn btn-primary'%>
+    <%= link_to 'Cancel', stores_path, method: :get, class: 'btn btn-secondary' %>
+  <% end %>
+<% end %>

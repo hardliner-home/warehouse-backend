@@ -11,6 +11,13 @@ class StoresController < ApplicationController
     @store.user = current_user
   end
 
+  def show
+    @store = Store.find(params[:id])
+    @storeProducts = @store.products
+                             .order(:id)
+                             .page(params[:page])
+  end
+
   private
 
   def store_params
