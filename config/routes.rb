@@ -9,7 +9,9 @@ Rails.application.routes.draw do
     resources :products
   end
 
-  resources :orders
+  resources :stores do
+    resources :orders
+  end
 
   get 'home' => 'home#home'
 

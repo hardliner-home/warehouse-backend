@@ -1,73 +1,16 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title><%= @title %></title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-
-    <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-      crossorigin="anonymous">
-
-  </head>
-
+<html lang="ru">
+  <%= render(partial: 'layouts/partials/head') %>
   <body>
-
     <!--Navigation bar-->
-
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <div class="container">
-        <%= link_to 'Warehouses', '/', method: :get, class: 'navbar-brand'%>
-        <% if user_signed_in? %>
-        <div class="collapse navbar-collapse d-flex justify-content-between">
-          <ul class="navbar-nav">
-
-            <li class="nav-item <%= 'active' if params[:controller] == 'home' %>">
-              <%= link_to 'Home', home_path, method: :get, class: 'nav-link' %>
-            </li>
-            <li class="nav-item <%= 'active' if params[:controller] == 'warehouses' || params[:controller] == 'products'%>">
-              <%= link_to 'Warehouses', warehouses_path, method: :get, class: 'nav-link' %>
-            </li>
-            <li class="nav-item <%= 'active' if params[:controller] == 'stores' %>">
-              <%= link_to 'Stores', stores_path, method: :get, class: 'nav-link' %>
-            </li>
-            <li class="nav-item <%= 'active' if params[:controller] == 'orders' %>">
-              <%= link_to 'Orders', orders_path, method: :get, class: 'nav-link' %>
-            </li>
-
-          </ul>
-        </div>
-
-        <div>
-
-            <div>
-              <%= current_user.first_name %>
-              <%= link_to 'Logout', destroy_user_session_path, method: :delete, class: 'btn btn-primary' %>
-            </div>
-          <% else %>
-            <div>
-              <%= link_to 'Register', new_user_registration_path, method: :get, class: 'btn'%>
-              <%= link_to 'Login', new_user_session_path, method: :get, class: 'btn btn-primary'%>
-            </div>
-          <% end %>
-
-        </div>
-      </div>
-    </nav>
+    <%= render(partial: 'layouts/partials/navigation') %>
 
     <!--Main content-->
     <div class="container">
-
       <p class="notice"><%= notice %></p>
       <p class="alert"><%= alert %></p>
-
       <%= yield %>
-
     </div>
 
   </body>

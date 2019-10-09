@@ -44,3 +44,11 @@
 #     title: Faker::Restaurant.name
 # )
 # end
+
+1000.times do |time|
+  store = Store.find(time + 1)
+  10.times do
+    store.warehouses << Warehouse.order('RANDOM()').first
+  end
+
+end

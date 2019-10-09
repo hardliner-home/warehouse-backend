@@ -1,7 +1,7 @@
 <div>
   Store
   <%= @store.title %>
-  <%= link_to 'Make order', new_order_path, method: :get, class: 'btn btn-primary' %>
+  <%= link_to 'Make order', new_store_order_path(@store.id), method: :get, class: 'btn btn-primary' %>
 </div>
 <br>
 <div>Products list</div>

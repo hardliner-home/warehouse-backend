@@ -4,6 +4,9 @@ class Warehouse < ApplicationRecord
   has_many :products_warehouses, dependent: :destroy
   has_many :products, through: :products_warehouses, dependent: :destroy
 
+  has_many :store_warehouses, dependent: :destroy
+  has_many :stores, through: :store_warehouses, dependent: :destroy
+
   validates :title,
             :address,
             presence: true
