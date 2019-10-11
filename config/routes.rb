@@ -13,6 +13,8 @@ Rails.application.routes.draw do
     resources :orders
   end
 
+  resources :orders
+
   get 'home' => 'home#home'
 
   root 'welcome#welcome'

@@ -9,6 +9,7 @@ gem 'faker'
 gem 'randumb'
 gem 'kaminari'
 gem 'bootstrap4-kaminari-views'
+gem 'rubocop-rails'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6'

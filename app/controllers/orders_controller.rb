@@ -9,7 +9,7 @@ class OrdersController < ApplicationController
 
   def new
     @order = Order.new
-    @warehouses = Store.find(params[:store_id]).warehouses
+    @storeWarehouses = Store.find(params[:store_id]).warehouses.order('id ASC').ids #
 
     # @products = Store.find_by(params[:store_id]).products
     # @warehouses = current_user.warehouses.all
@@ -29,7 +29,7 @@ class OrdersController < ApplicationController
   private
 
   def order_params
-    params.require(@order).permit(:count, :warehouse, :product)
+    params.require(@order).permit(:count, :store, :product)
   end
 
 end

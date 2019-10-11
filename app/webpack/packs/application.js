@@ -17,10 +17,29 @@ import '../src/stylesheets/application.scss';
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
 
-console.log('Hello World from Webpacker');
+window.Controllers = {};
 
+import $ from 'jquery';
 import '../src/javascripts/common';
 
-var Turbolinks = require("turbolinks");
-Turbolinks.start()
+import OrderIndex from '../src/javascripts/classes/OrderIndex';
+import OrderNew from '../src/javascripts/classes/OrderNew';
+window.Controllers.OrderIndex = OrderIndex;
+window.Controllers.OrderNew = OrderNew;
 
+
+
+var Turbolinks = require("turbolinks");
+Turbolinks.start();
+
+document.addEventListener("turbolinks:load", function() {
+    bindClasses($('body'))
+});
+
+function bindClasses($scope) {
+    $scope.find('[data-controller]').each((key, element) => {
+        $.each($(element).data('controller').split(' '), (index, className) => {
+            new (Controllers[className])($(element))
+        })
+    });
+}

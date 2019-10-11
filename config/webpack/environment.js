@@ -7,14 +7,14 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const isProductionMode = process.env.NODE_ENV === 'production';
 
-if (isProductionMode) {
-    environment.plugins.append('UglifyJs', new UglifyJsPlugin({
-        cache: true,
-        parallel: true,
-        uglifyOptions: { output: { comments: false } },
-    }));
-    environment.plugins.append('OptimizeCSSAssetsPlugin', new OptimizeCSSAssetsPlugin());
-}
+// if (isProductionMode) {
+//     environment.plugins.append('UglifyJs', new UglifyJsPlugin({
+//         cache: true,
+//         parallel: true,
+//         uglifyOptions: { output: { comments: false } },
+//     }));
+//     environment.plugins.append('OptimizeCSSAssetsPlugin', new OptimizeCSSAssetsPlugin());
+// }
 
 environment.plugins.prepend(
     'Provide',
