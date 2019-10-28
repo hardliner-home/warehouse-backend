@@ -24,10 +24,9 @@ import '../src/javascripts/common';
 
 import OrderIndex from '../src/javascripts/classes/OrderIndex';
 import OrderNew from '../src/javascripts/classes/OrderNew';
+
 window.Controllers.OrderIndex = OrderIndex;
 window.Controllers.OrderNew = OrderNew;
-
-
 
 var Turbolinks = require("turbolinks");
 Turbolinks.start();

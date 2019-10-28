@@ -18,8 +18,8 @@ export default class OrderNew {
                     }
                 })
                     .then((response) => {
-                        // console.log(response);
-                        console.log(JSON.parse(response));
+                        console.log(response);
+                        // console.log(JSON.parse(response));
                     })
                     .catch((error) => {
                         console.log(error);
