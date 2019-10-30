@@ -1,14 +1,14 @@
 class ProductsController < ApplicationController
 
+  # respond_to :json
+
   def index
 
-    @warehouseProducts = Warehouse.find(params[:warehouse_id]).products.first
+    @warehouseProducts = Warehouse.find(params[:warehouse_id]).products.all
 
     respond_to do |format|
-      format.html { text }
-      format.json { render :text => @warehouseProducts }
-
-      puts '!@#!@#!@#!@#!@#!@#!@#', @warehouseProducts
+      format.html
+      format.json { render json: @warehouseProducts }
     end
   end
 

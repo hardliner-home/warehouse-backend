@@ -21,8 +21,8 @@
       <% end %>
 
 
-      <%= f.select :warehouse_id, collection: @storeWarehouses %>
-      <%= f.input :product, collection: Product.all, class: 'col-5' %>
+      <%= f.select :warehouse, collection: @storeWarehouses %>
+      <%= f.input :product, collection: @warehouseProducts, class: 'col-5' %>
       <%= f.input :count, class: 'col-5' %>
 
       <%= f.button :submit, 'Make order', url: store_orders_path, method: :post, class: 'btn btn-primary' %>
