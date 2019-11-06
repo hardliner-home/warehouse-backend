@@ -21,7 +21,6 @@ window.Controllers = {};
 
 import $ from 'jquery';
 import '../src/javascripts/common';
-import "~bootstrap/scss/bootstrap";
 
 import OrderIndex from '../src/javascripts/classes/OrderIndex';
 import OrderNew from '../src/javascripts/classes/OrderNew';

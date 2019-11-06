@@ -1,37 +1,40 @@
-<div data-controller="OrderNew">
-  <div class="orders-header">Create new order</div>
+<%= react_component('NewOrder/NewOrder', {warehouses: @store_warehouses, products: @warehouse_products}) %>
+
+
+<!--<div data-controller="OrderNew">-->
+<!--  <div class="orders-header">Create new order</div>-->
 
   <%# if @storeWarehouses.empty? %>
 <!--    <p>No warehouses at list</p>-->
   <%# else %>
-    <%= simple_form_for @order do |f| %>
+    <%#= simple_form_for @order do |f| %>
 
-      <% if @order.errors.any? %>
-        <div id="error_explanation">
-          <h2>
-            <%= pluralize(@order.errors.count, "error") %> prohibited
-            this part from being saved:
-          </h2>
-          <ul>
-            <% @order.errors.full_messages.each do |msg| %>
-              <li><%= msg %></li>
-            <% end %>
-          </ul>
-        </div>
-      <% end %>
+      <%# if @order.errors.any? %>
+<!--        <div id="error_explanation">-->
+<!--          <h2>-->
+<!--            <%#= pluralize(@order.errors.count, "error") %> prohibited-->
+<!--            this part from being saved:-->
+<!--          </h2>-->
+<!--          <ul>-->
+            <%# @order.errors.full_messages.each do |msg| %>
+<!--              <li><%#= msg %></li>-->
+            <%# end %>
+<!--          </ul>-->
+<!--        </div>-->
+      <%# end %>
 
 
       <%#= f.input :warehouse, collection: @store_warehouses %>
 
-      <%= simple_fields_for :warehouse do |o| %>
-        <%= o.input :warehouse, collection: @store_warehouses %>
-      <% end %>
+      <%#= simple_fields_for :warehouse do |o| %>
+        <%#= o.input :warehouse, collection: @store_warehouses %>
+      <%# end %>
 
-      <%= f.input :product, collection: @warehouse_products, class: 'col-5' %>
-      <%= f.input :count, class: 'col-5' %>
+      <%#= f.input :product, collection: @warehouse_products, class: 'col-5' %>
+      <%#= f.input :count, class: 'col-5' %>
 
-      <%= f.button :submit, 'Make order', class: 'btn btn-primary' %>
-      <%= link_to 'Cancel', stores_path, method: :get, class: 'btn btn-secondary' %>
-    <% end %>
+      <%#= f.button :submit, 'Make order', class: 'btn btn-primary' %>
+      <%#= link_to 'Cancel', stores_path, method: :get, class: 'btn btn-secondary' %>
+    <%# end %>
   <%# end %>
-</div>
+<!--</div>-->
