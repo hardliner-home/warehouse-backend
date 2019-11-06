@@ -21,9 +21,18 @@ window.Controllers = {};
 
 import $ from 'jquery';
 import '../src/javascripts/common';
+import "~bootstrap/scss/bootstrap";
 
 import OrderIndex from '../src/javascripts/classes/OrderIndex';
 import OrderNew from '../src/javascripts/classes/OrderNew';
+
+// Support component names relative to this directory:
+var componentRequireContext = require.context("components", true);
+var ReactRailsUJS = require("react_ujs");
+ReactRailsUJS.useContext(componentRequireContext);
+
+// import ReactRailsUJS from 'react_ujs'
+// ReactRailsUJS.useContext(componentRequireContext);
 
 window.Controllers.OrderIndex = OrderIndex;
 window.Controllers.OrderNew = OrderNew;

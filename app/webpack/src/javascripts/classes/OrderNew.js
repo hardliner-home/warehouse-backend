@@ -1,39 +1,23 @@
 // import axios from 'axios';
 
+import $ from 'jquery';
+
 export default class OrderNew {
 
     constructor($scope) {
         // console.log('OrderNew >>> ', $scope)
+        this.$storeOrdersWarehouseIdSelector = $scope.find('#warehouse_warehouse');
+        this.$storeOrdersWarehousesProductSelector = $scope.find('#order_product');
+        const previousValue = this.$storeOrdersWarehouseIdSelector.val();
 
-        this.StoreOrdersWarehouseIdSelector = $scope.find('#store_orders_warehouse_id')
-        this.StoreOrdersWarehousesProductSelector = $scope.find('#store_orders_product')
-        this.previousValue = this.StoreOrdersWarehouseIdSelector.val()
-
-        this.appendReceivedData = (receivedData) => {
-            console.log(receivedData.length)
-            this.StoreOrdersWarehousesProductSelector.empty()
-
-            $.each(receivedData, (index, value) => {
-                this.StoreOrdersWarehousesProductSelector
-                    .append($("<option>", {
-                        value: value.id,
-                        text: value.title
-                    }))
-            })
-
-        }
-
-        this.StoreOrdersWarehouseIdSelector[0].addEventListener('change', () => {
-            if (this.previousValue !== this.StoreOrdersWarehouseIdSelector.val()) {
+        this.$storeOrdersWarehouseIdSelector.on('change', () => {
+            if (previousValue !== this.$storeOrdersWarehouseIdSelector.val()) {
                 $.ajax({
-                        type: "GET",
-                        url: `/warehouses/${this.StoreOrdersWarehouseIdSelector.val()}/products`,
-                        contentType: 'application/json',
-                        dataType: 'json',
-                        success: (receivedData) => {
-                            // console.log(receivedData);
-                            this.appendReceivedData(receivedData);
-                        }
+                    type: 'GET',
+                    url: `/warehouses/${this.$storeOrdersWarehouseIdSelector.val()}/products`,
+                    dataType: 'JSON'
+                }).then((receivedData) => {
+                    this.appendReceivedData(receivedData);
                 })
 
                 // axios.get(`/warehouses/${this.StoreOrdersWarehouseIdSelector.val()}/products.json`, {
@@ -59,4 +43,19 @@ export default class OrderNew {
         //3. On change send axios call to BE and fetch new Products according selected warehouse
         //4. Set new options list to Product SelectBox
     }
+
+    appendReceivedData(receivedData) {
+        // console.log(receivedData.length)
+        this.$storeOrdersWarehousesProductSelector.empty();
+
+        $.each(receivedData, (index, value) => {
+            this.$storeOrdersWarehousesProductSelector
+                .append($("<option>", {
+                    value: value.id,
+                    text: value.title
+                }))
+        })
+    };
+
+
 };

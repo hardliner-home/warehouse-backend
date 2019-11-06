@@ -11,6 +11,9 @@ gem 'kaminari'
 gem 'bootstrap4-kaminari-views'
 gem 'rubocop-rails'
 
+# gem 'webpacker'
+gem 'react-rails'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6'
 # Use postgresql as the database for Active Record

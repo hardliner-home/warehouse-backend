@@ -9,23 +9,21 @@ class OrdersController < ApplicationController
 
   def new
     @order = Order.new
-    @storeWarehouses = Store.find(params[:store_id]).warehouses.order('id ASC').ids
-    @warehouseProducts = Warehouse.products
-
-    # @storeWarehouses = Store.find(params[:store_id]).warehouses.order('id ASC').ids #
-    # @warehouseProducts = Products.find(params[:warehouse_id]).all
-    # @products = Store.find_by(params[:store_id]).products
+    @store_warehouses = Store.find(params[:store_id]).warehouses.order('id ASC').ids
+    @warehouse_products = Warehouse.find(params[:store_id]).products
 
   end
 
   def create
-    # @order = Order.new(order_params)
-    #
-    # if @order.save
-    #   redirect_to new_order_path, method: :get
-    # else
-    #   render 'new'
-    # end
+
+    puts '11231231312312312312312312312312312312312'
+    @order = Order.new(order_params)
+
+    if @order.save
+      redirect_to store_orders_path, method: :post
+    else
+      render 'new'
+    end
   end
 
   private

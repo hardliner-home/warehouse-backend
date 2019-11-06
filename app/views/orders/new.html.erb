@@ -1,10 +1,10 @@
 <div data-controller="OrderNew">
   <div class="orders-header">Create new order</div>
 
-  <% if @storeWarehouses.empty? %>
-    <p>No warehouses at list</p>
-  <% else %>
-    <%= simple_form_for :store_orders do |f| %>
+  <%# if @storeWarehouses.empty? %>
+<!--    <p>No warehouses at list</p>-->
+  <%# else %>
+    <%= simple_form_for @order do |f| %>
 
       <% if @order.errors.any? %>
         <div id="error_explanation">
@@ -21,12 +21,17 @@
       <% end %>
 
 
-      <%= f.select :warehouse, collection: @storeWarehouses %>
-      <%= f.input :product, collection: @warehouseProducts, class: 'col-5' %>
+      <%#= f.input :warehouse, collection: @store_warehouses %>
+
+      <%= simple_fields_for :warehouse do |o| %>
+        <%= o.input :warehouse, collection: @store_warehouses %>
+      <% end %>
+
+      <%= f.input :product, collection: @warehouse_products, class: 'col-5' %>
       <%= f.input :count, class: 'col-5' %>
 
-      <%= f.button :submit, 'Make order', url: store_orders_path, method: :post, class: 'btn btn-primary' %>
+      <%= f.button :submit, 'Make order', class: 'btn btn-primary' %>
       <%= link_to 'Cancel', stores_path, method: :get, class: 'btn btn-secondary' %>
     <% end %>
-  <% end %>
+  <%# end %>
 </div>
