@@ -1,4 +1,6 @@
 class OrdersController < ApplicationController
+
+
   def index
     @orders = Order.all
   end
@@ -9,14 +11,30 @@ class OrdersController < ApplicationController
 
   def new
     @order = Order.new
+
     @store_warehouses = Store.find(params[:store_id]).warehouses.order('id ASC').ids
-    @warehouse_products = Warehouse.find(params[:store_id]).products
+    @store_id = params[:store_id]
+
+    # @warehouse_products = Warehouse.find(params[:store_id]).products
+    # @warehouse_products = []
+
+    respond_to do |format|
+      @warehouse_products = Warehouse.find(params[:store_id]).products
+      puts '>>>>>'
+      puts @warehouse_products.inspect
+
+      format.html {}
+      format.json {
+
+        render json: @warehouse_products
+      }
+    end
 
   end
 
-  def create
 
-    puts '11231231312312312312312312312312312312312'
+
+  def create
     @order = Order.new(order_params)
 
     if @order.save

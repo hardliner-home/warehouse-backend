@@ -1,7 +1,5 @@
 class ProductsController < ApplicationController
 
-  # respond_to :json
-
   def index
 
     @warehouseProducts = Warehouse.find(params[:warehouse_id]).products.all
