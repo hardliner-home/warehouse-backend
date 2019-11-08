@@ -30,13 +30,14 @@ class OrdersController < ApplicationController
 
 
   def create
-    @order = Order.new(order_params)
 
-    if @order.save
-      redirect_to store_orders_path, method: :post
-    else
-      render 'new'
-    end
+    # @order = Order.new(order_params)
+    #
+    # if @order.save
+    #   redirect_to store_orders_path, method: :post
+    # else
+    #   render 'new'
+    # end
   end
 
   private

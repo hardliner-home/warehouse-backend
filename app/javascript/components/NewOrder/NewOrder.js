@@ -1,6 +1,6 @@
 import React from "react"
 import Select from 'react-select'
-// import PropTypes from "prop-types"
+import PropTypes from "prop-types"
 import axios from 'axios'
 
 class NewOrder extends React.Component {
@@ -8,13 +8,19 @@ class NewOrder extends React.Component {
     state = {
         warehouse: null,
         products: [],
-        selectedProductId: null
-    };
+        selectedProduct: {},
+        selectedCount: null
+    }
+
+    static propTypes = {
+        warehouses: PropTypes.array,
+        storeId: PropTypes.number
+    }
 
     convertForSelect = (data) => {
-        const convertedData = data.map((dataElement, i) => {
+        return data.map((dataElement, i) => {
             let element = {}
-            if (Array.isArray(data)) {
+            if (!dataElement.title) {
                 element = {
                     value: dataElement,
                     label: dataElement
@@ -27,46 +33,65 @@ class NewOrder extends React.Component {
             }
             return element
         })
-        return convertedData
     }
 
     getWarehouseProducts = (e) => {
-        // console.log(e.value)
 
-        axios.get(`http://localhost:3000/warehouses/${ e.value }/products`, { // http://localhost:3000/stores/${this.props.storeId}/orders/new
+        axios.get(`/warehouses/${ e.value }/products`, {
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json; charset=utf-8'
             }
         })
             .then(response => {
-                // console.log(response.data)
-                this.setState({ products: respont.data })
+                this.setState({ products: response.data, warehouse: e.value })
             })
             .catch(error => {
                 console.log(error)
             })
+    }
 
-        // fetch(`http://localhost:3000/stores/${this.props.storeId}/orders/new`)
-        //     .then(response => {
-        //         console.log(response)
-        //     })
-        //     .catch(error => {
-        //         console.log(error)
-        //     })
+    setSelectedProduct = (e) => {
 
-        this.setState({ warehouse: e.value })
-    };
+        const product = this.state.products.filter((prod) => {
+            return prod.id == e.value
+        })
+        this.setState({ selectedProduct: product[0] })
+    }
 
     checkProductExistance = (e) => {
-        console.log(e.value)
-        // this.setState({ selectedProductId: e.value })
+
+        if (isFinite(e.target.value)) {
+            if(e.target.value >= 1 && e.target.value <= this.state.selectedProduct.count) {
+                console.log('NORMALNO')
+                this.setState({selectedCount: e.target.value})
+            } else {
+                console.log('ti eblan? ne podhodit', this.state.selectedProduct.count)
+            }
+        } else {
+            console.log('dai chislo, daun')
+        }
+    }
+
+    makeNewOrder = () => {
+        axios.post(`/stores/${ this.props.storeId }/orders`, {
+            store: this.props.storeId,
+            warehouse: this.state.warehouse,
+            productId: this.state.selectedProduct.id,
+            count: this.state.selectedCount
+        })
+            .then(response => {
+                console.log(response)
+            })
+            .catch(error => {
+                console.log(error)
+            })
     }
 
     render () {
         const { warehouses } = this.props
-        const { warehouse, products } = this.state
-        const { convertForSelect, getWarehouseProducts, checkProductExistance } = this
+        const { products,selectedCount } = this.state
+        const { convertForSelect, getWarehouseProducts, checkProductExistance, setSelectedProduct, makeNewOrder } = this
 
         return (
             <div className='product-list'>
@@ -75,12 +100,28 @@ class NewOrder extends React.Component {
                 <p>Choose warehouse</p>
                 <Select
                     options={ convertForSelect(warehouses) }
-                    onChange={ getWarehouseProducts } />
+                    onChange={ getWarehouseProducts }
+                    required />
 
                 <p>Choose product</p>
                 <Select
                     options={ convertForSelect(products) }
-                    onChange={ checkProductExistance } />
+                    onChange={ setSelectedProduct }
+                    required />
+
+                <p>Choose product</p>
+                <input
+                    type="text"
+                    className='form-control'
+                    onChange={ checkProductExistance }
+                    required />
+
+                <button
+                    className='btn btn-primary'
+                    onClick={ makeNewOrder } >
+                        Make order
+                </button>
+                <button className='btn'>Cancel</button>
             </div>
         )
   }
