@@ -20,14 +20,9 @@ class OrdersController < ApplicationController
 
     respond_to do |format|
       @warehouse_products = Warehouse.find(params[:store_id]).products
-      puts '>>>>>'
-      puts @warehouse_products.inspect
 
       format.html {}
-      format.json {
-
-        render json: @warehouse_products
-      }
+      format.json { render json: @warehouse_products }
     end
 
   end

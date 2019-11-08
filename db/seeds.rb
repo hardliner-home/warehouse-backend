@@ -14,11 +14,7 @@
 #       password: "qwerty"
 #   )
 # end
-
-# 1000.times do
 #
-# end
-
 # 20.times do
 #   Warehouse.create(
 #       title: Faker::Commerce.product_name,

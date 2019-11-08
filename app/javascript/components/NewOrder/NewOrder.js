@@ -1,7 +1,7 @@
 import React from "react"
 import Select from 'react-select'
 // import PropTypes from "prop-types"
-import axios from 'axios';
+import axios from 'axios'
 
 class NewOrder extends React.Component {
 
@@ -31,16 +31,17 @@ class NewOrder extends React.Component {
     }
 
     getWarehouseProducts = (e) => {
-        console.log(e.value)
+        // console.log(e.value)
 
-        axios.get(`http://localhost:3000/stores/${this.props.storeId}/orders/new`, {
+        axios.get(`http://localhost:3000/warehouses/${ e.value }/products`, { // http://localhost:3000/stores/${this.props.storeId}/orders/new
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json; charset=utf-8'
-            },
+            }
         })
             .then(response => {
-                console.log(response.data)
+                // console.log(response.data)
+                this.setState({ products: respont.data })
             })
             .catch(error => {
                 console.log(error)
