@@ -1,11 +1,14 @@
 class OrdersController < ApplicationController
 
-
   def index
-    @orders = Order.all
+    # @orders = Order.all
+    @orders = Order.joins(:product)
+    # @store_id = params[:store_id]
+    puts @orders
   end
 
   def show
+    @orders = Order.find(current_user.id)
 
   end
 
@@ -14,9 +17,6 @@ class OrdersController < ApplicationController
 
     @store_warehouses = Store.find(params[:store_id]).warehouses.order('id ASC').ids
     @store_id = params[:store_id]
-
-    # @warehouse_products = Warehouse.find(params[:store_id]).products
-    # @warehouse_products = []
 
     respond_to do |format|
       @warehouse_products = Warehouse.find(params[:store_id]).products
@@ -27,23 +27,25 @@ class OrdersController < ApplicationController
 
   end
 
-
-
   def create
+    @order = Order.new(order_params)
 
-    # @order = Order.new(order_params)
-    #
-    # if @order.save
-    #   redirect_to store_orders_path, method: :post
-    # else
-    #   render 'new'
-    # end
+    @order.user = current_user
+    if @order.save!
+      redirect_to store_orders_path, method: :get
+    else
+      puts @order.errors
+      respond_to do |format|
+        format.html {}
+        format.json { render @order.errors }
+      end
+    end
   end
 
   private
 
   def order_params
-    params.require(@order).permit(:count, :warehouse, :product)
-  end
+     params.fetch(:order, {}).permit( :count, :product_id, :store_id )
+   end
 
 end

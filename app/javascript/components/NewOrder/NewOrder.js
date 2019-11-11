@@ -1,7 +1,16 @@
-import React from "react"
-import Select from 'react-select'
-import PropTypes from "prop-types"
-import axios from 'axios'
+import React from "react";
+import Select from 'react-select';
+import PropTypes from "prop-types";
+import axios from 'axios';
+
+import { ToastContainer, toast } from 'react-toastify';
+// import 'react-toastify/dist/ReactToastify.css';
+// import '../NewOrder/NewOrder.css'
+
+toast.configure({
+    autoClose: 3000
+})
+
 
 class NewOrder extends React.Component {
 
@@ -9,7 +18,8 @@ class NewOrder extends React.Component {
         warehouse: null,
         products: [],
         selectedProduct: {},
-        selectedCount: null
+        selectedCount: null,
+        error: ''
     }
 
     static propTypes = {
@@ -44,6 +54,7 @@ class NewOrder extends React.Component {
             }
         })
             .then(response => {
+                // console.log(response.data)
                 this.setState({ products: response.data, warehouse: e.value })
             })
             .catch(error => {
@@ -74,27 +85,54 @@ class NewOrder extends React.Component {
     }
 
     makeNewOrder = () => {
-        axios.post(`/stores/${ this.props.storeId }/orders`, {
-            store: this.props.storeId,
-            warehouse: this.state.warehouse,
-            productId: this.state.selectedProduct.id,
-            count: this.state.selectedCount
-        })
-            .then(response => {
-                console.log(response)
+        console.log(this.state)
+        if (
+            this.state.warehouse !== null &&
+            this.state.selectedProduct !== {} &&
+            this.state.selectedCount !== null
+        ) {
+            axios.post(`/stores/${ this.props.storeId }/orders`, {
+                store_id: this.props.storeId,
+                product_id: this.state.selectedProduct.id,
+                count: this.state.selectedCount
             })
-            .catch(error => {
-                console.log(error)
-            })
+                .then(response => {
+                    if (response.status == 200) {
+                        console.log('123123123123213')
+                        // this.props.history.push(`/stores/${ storeId }/orders`)
+                        // window.location.href = `/stores/${ storeId }/orders`
+                        // window.history.push(`/stores/${ this.props.storeId }/orders`)
+                        document.location.href = `/stores/${ this.props.storeId }/orders`
+                    }
+                    // console.log(response)
+                })
+                .catch(error => {
+                    console.log(error)
+                })
+        } else {
+
+            // this.setState({ error: 'Please, check all fields' })
+            // alert('Please, check all fields') // temporarily
+            toast.error('Wrong data in inputs. Please, check it', {
+                // position: toast.POSITION.TOP_LEFT,
+                autoClose: 3000
+            });
+            // console.log('Please, check all fields') // temporarily
+        }
+
     }
 
     render () {
-        const { warehouses } = this.props
-        const { products,selectedCount } = this.state
+        const { warehouses, storeId } = this.props
+        const { products, selectedCount } = this.state
         const { convertForSelect, getWarehouseProducts, checkProductExistance, setSelectedProduct, makeNewOrder } = this
 
         return (
             <div className='product-list'>
+                <ToastContainer
+                    autoClose={3000}
+                />
+
                 <p>Create new order</p>
 
                 <p>Choose warehouse</p>
@@ -121,7 +159,15 @@ class NewOrder extends React.Component {
                     onClick={ makeNewOrder } >
                         Make order
                 </button>
-                <button className='btn'>Cancel</button>
+                <button
+                    className='btn'
+                    onClick={
+                        // () => this.props.history.push(`/stores/${ storeId }`)
+                        // () => this.props.history.back()
+                        // window.history.push(`/stores/${ storeId }`)
+                        // window.location.href = `/stores/${ storeId }`
+                        () => window.history.back()
+                    }>Cancel</button>
             </div>
         )
   }

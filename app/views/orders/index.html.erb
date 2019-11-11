@@ -1,9 +1,11 @@
-<div data-controller="OrderIndex">
-  <div>Orders list</div>
+<%= react_component('UserOrders/UserOrders', { userOrders: @orders }) %>
 
-  <% if @orders.empty? %>
-    <p>No orders</p>
-  <% else %>
+<!--<div data-controller="OrderIndex">-->
+<!--  <div>Orders list</div>-->
 
-  <% end %>
-</div>
+  <%# if @orders.empty? %>
+<!--    <p>No orders</p>-->
+  <%# else %>
+
+  <%# end %>
+<!--</div>-->

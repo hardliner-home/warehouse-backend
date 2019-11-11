@@ -5,7 +5,16 @@ module.exports = {
     use: [
         { loader: MiniCssExtractPlugin.loader },
         { loader: 'css-loader' },
-        { loader: 'sass-loader', options: { sourceMap: true } }],
+        { loader: 'sass-loader',
+            options: { sourceMap: true }
+            },
+        {
+            loader: 'style-loader',
+            options: {
+                injectType: 'singletonStyleTag'
+            }
+        },
+    ],
         // { loader: 'sass-loader', options: { sourceMap: true, importer: globImporter() } }],
 };
 

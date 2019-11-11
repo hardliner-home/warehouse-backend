@@ -28,6 +28,7 @@
     "react-on-rails": "^11.3.0",
     "react-rails-ujs": "^1.1.0",
     "react-select": "^3.0.8",
+    "react-toastify": "^5.4.1",
     "react_ujs": "^2.6.0",
     "sass-loader": "^8.0.0",
     "schema-utils": "^2.5.0",
