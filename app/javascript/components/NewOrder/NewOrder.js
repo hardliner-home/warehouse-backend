@@ -5,7 +5,7 @@ import axios from 'axios';
 
 import { ToastContainer, toast } from 'react-toastify';
 // import 'react-toastify/dist/ReactToastify.css';
-// import '../NewOrder/NewOrder.css'
+import './NewOrder.scss'
 
 toast.configure({
     autoClose: 3000

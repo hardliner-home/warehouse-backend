@@ -28,11 +28,11 @@ class UserOrders extends React.Component {
                             key={i}
                             >
                             <p>Order to { userOrder.store_id } store</p>
-                            {/*<p></p>*/}
                             <button
                                 className='btn btn-primary'
-                                // onClick={() => window.location.(`/orders/${ userOrder.id }`)}
-                                onClick={() => window.location.href = `/orders/${ userOrder.id }`}
+                                onClick={
+                                    () => window.location.href = `/orders/${ userOrder.id }`
+                                }
                                 >Show
                             </button>
                         </div>

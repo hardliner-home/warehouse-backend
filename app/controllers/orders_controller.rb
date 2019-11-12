@@ -4,12 +4,12 @@ class OrdersController < ApplicationController
     # @orders = Order.all
     @orders = Order.joins(:product)
     # @store_id = params[:store_id]
-    puts @orders
+    # puts @orders
   end
 
   def show
-    @orders = Order.find(current_user.id)
-
+    @order = Order.find(params[:id])
+    @product = Product.find(@order.product_id)
   end
 
   def new
@@ -34,7 +34,6 @@ class OrdersController < ApplicationController
     if @order.save!
       redirect_to store_orders_path, method: :get
     else
-      puts @order.errors
       respond_to do |format|
         format.html {}
         format.json { render @order.errors }
@@ -42,10 +41,27 @@ class OrdersController < ApplicationController
     end
   end
 
+  def update
+    @order = Order.find(params[:id])
+
+    if @order.('status': params[:status])
+      redirect_to orders_path, method: :get
+    else
+      respond_to do |format|
+        format.html {}
+        format.json { render :text => "ERROR, KOVAL'SKI" }
+      end
+    end
+
+  end
+
   private
 
   def order_params
      params.fetch(:order, {}).permit( :count, :product_id, :store_id )
-   end
+  end
+
+  # def update_params
+  # end
 
 end
