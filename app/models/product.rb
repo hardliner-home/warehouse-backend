@@ -5,5 +5,5 @@ class Product < ApplicationRecord
   has_many :orders, dependent: :destroy
   has_many :stores, through: :orders, dependent: :destroy
 
-  paginates_per 11
+  # paginates_per 11
 end

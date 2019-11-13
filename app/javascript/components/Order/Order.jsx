@@ -20,7 +20,7 @@ class Order extends React.Component {
         })
             .then(response => {
                 console.log(response);
-                window.location.href = `/orders`
+                window.location.href = '/orders'
             })
             .catch(error => {
                 console.log(error)
@@ -36,6 +36,8 @@ class Order extends React.Component {
     render() {
         const { order, product } = this.props
         const { accept, decline } = this
+        console.log(order)
+
         return(
             <div className='order-info'>
                 <p>Order № { order.id }</p>
@@ -43,16 +45,23 @@ class Order extends React.Component {
                 <p>Product name: { product.title } </p>
                 <p>Count: { order.count } </p>
                 <p>Time: { moment(order.created_at).format('DD-MM-YYYY HH:MM') }</p>
+                <p>Status: { order.status ? 'Accepted' : 'Waiting for response' }</p>
+                {
+                    order.status ? <button className='btn btn-warning'>Delete</button> :
+                        <div>
+                            <button
+                                className='btn btn-success'
+                                onClick={accept}
+                            >Accept
+                            </button>
+                            <button
+                                className='btn btn-warning'
+                                onClick={decline}
+                            >Decline
+                            </button>
+                        </div>
+                }
 
-                <button
-                    className='btn btn-success'
-                    onClick={accept}
-                    >Accept
-                </button><button
-                    className='btn btn-warning'
-                    onClick={decline}
-                    >Decline
-                </button>
             </div>
         )
     }

@@ -5,4 +5,6 @@ class Order < ApplicationRecord
 
 
   validates :count, :store, presence: true
+
+  # paginates_per 11
 end

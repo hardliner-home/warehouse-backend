@@ -5,7 +5,7 @@ import axios from 'axios';
 
 import { ToastContainer, toast } from 'react-toastify';
 // import 'react-toastify/dist/ReactToastify.css';
-import './NewOrder.scss'
+// import './NewOrder.scss'
 
 toast.configure({
     autoClose: 3000
@@ -97,13 +97,11 @@ class NewOrder extends React.Component {
                 count: this.state.selectedCount
             })
                 .then(response => {
-                    if (response.status == 200) {
+                    // if (response.status == 200) {
                         console.log('123123123123213')
-                        // this.props.history.push(`/stores/${ storeId }/orders`)
-                        // window.location.href = `/stores/${ storeId }/orders`
-                        // window.history.push(`/stores/${ this.props.storeId }/orders`)
+
                         document.location.href = `/stores/${ this.props.storeId }/orders`
-                    }
+                    // }
                     // console.log(response)
                 })
                 .catch(error => {
@@ -111,13 +109,9 @@ class NewOrder extends React.Component {
                 })
         } else {
 
-            // this.setState({ error: 'Please, check all fields' })
-            // alert('Please, check all fields') // temporarily
             toast.error('Wrong data in inputs. Please, check it', {
-                // position: toast.POSITION.TOP_LEFT,
                 autoClose: 3000
             });
-            // console.log('Please, check all fields') // temporarily
         }
 
     }
@@ -162,10 +156,6 @@ class NewOrder extends React.Component {
                 <button
                     className='btn'
                     onClick={
-                        // () => this.props.history.push(`/stores/${ storeId }`)
-                        // () => this.props.history.back()
-                        // window.history.push(`/stores/${ storeId }`)
-                        // window.location.href = `/stores/${ storeId }`
                         () => window.history.back()
                     }>Cancel</button>
             </div>
