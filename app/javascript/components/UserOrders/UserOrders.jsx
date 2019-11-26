@@ -10,7 +10,7 @@ class UserOrders extends React.Component {
 
     render() {
         const { userOrders, storeId } = this.props
-        console.log(userOrders)
+        // console.log(userOrders)
 
         return(
             <div>
@@ -34,7 +34,7 @@ class UserOrders extends React.Component {
                                             <th scope="row">{ userOrder.id }</th>
                                             <td>{ userOrder.store_id }</td>
                                             <td>
-                                                <h4><span className="badge badge-secondary">{ userOrder.status ? 'In process' : 'Accepted' }</span></h4>
+                                                <h4><span className="badge badge-secondary">{ !userOrder.status ? 'In process' : 'Accepted' }</span></h4>
                                             </td>
                                             <td>
                                                 <button
@@ -53,30 +53,7 @@ class UserOrders extends React.Component {
                         </div>
                 }
             </div>
-
-
-            // {/*<div>*/}
-            // {/*    { !userOrders ?*/}
-            // {/*        <p>No orders</p> :*/}
-            // {/*        userOrders.map((userOrder, i) =>*/}
-            // {/*            <div*/}
-            // {/*                key={i}*/}
-            // {/*                >*/}
-            // {/*                */}
-            // {/*                */}
-            // {/*                <p>Order to { userOrder.store_id } store</p>*/}
-            // {/*                <button*/}
-            // {/*                    className='btn btn-primary'*/}
-            // {/*                    onClick={*/}
-            // {/*                        () => window.location.href = `/orders/${ userOrder.id }`*/}
-            // {/*                    }*/}
-            // {/*                    >Show*/}
-            // {/*                </button>*/}
-            // {/*                <h4><span className="badge badge-secondary">{ userOrder.status ? 'In process' : 'Accepted' }</span></h4>*/}
-            // {/*            </div>*/}
-            // {/*        )*/}
-            // {/*    }*/}
-            // {/*</div>*/}
+            
         )
     }
 }
